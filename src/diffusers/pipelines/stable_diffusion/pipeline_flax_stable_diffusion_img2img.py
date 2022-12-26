@@ -243,7 +243,7 @@ class FlaxStableDiffusionImg2ImgPipeline(FlaxDiffusionPipeline):
 
         t_start = self.get_timestep_start(num_inference_steps, strength, scheduler_state)
         latent_timestep = scheduler_state.timesteps[t_start : t_start + 1].repeat(batch_size)
-        init_latents = self.scheduler.add_noise(init_latents, noise, latent_timestep)
+        init_latents = self.scheduler.add_noise(scheduler_state, init_latents, noise, latent_timestep)
         latents = init_latents
 
         if debug:
